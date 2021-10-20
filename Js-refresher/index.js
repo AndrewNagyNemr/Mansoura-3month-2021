@@ -156,6 +156,19 @@
 
 // npm & npx
 
+//==> npm init 
+//==> generate package.json
+//==> npm i <package-name>  // within the project 
+    //==> update package.json dependencies
+    //==> add package-lock.json 
+    //==> add node_modules //=> must be added to .gitignore
+//==> To install global package => npm i -g <package-name> //sudo
+//Alternative
+//npx create-react-app <app-name>
+
+//to uninstall => npm un <package-name>
+
+
 //========================
 
 // Install nodejs
