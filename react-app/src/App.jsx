@@ -1,29 +1,37 @@
+import { useState, useEffect } from "react";
 import { Post } from "./components/Post";
+import axios from "axios";
 
 export const App = () => {
-  const posts = [
-    { title: "first post", body: "my first post body" },
-    { title: "second post", body: "my second post body" },
-    { title: "third post", body: "my third post body" },
-    { title: "forth post", body: "my forth post body" },
-    { title: "forth post", body: "my forth post body" },
-    { title: "forth post", body: "my forth post body" },
-    { title: "forth post", body: "my forth post body" },
-    { title: "forth post", body: "my forth post body" },
-  ];
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/posts").then((result) => {
+      setPosts(result.data);
+    });
+  }, [posts]);
+
+  const handleClick = () => {
+    const newPost = { title: "fifth post", body: "my fifth post body" };
+    setPosts([...posts, newPost]);
+  };
+
+  const handleDelete = () => {
+    setPosts([]);
+  };
+
   return (
-    <div>
+    <div className="container">
       <h1>Hello from the app</h1>
-
-      {/* <Post title={posts[0].title} body={posts[0].body} />
-      <Post title={posts[1].title} body={posts[1].body} />
-      <Post title={posts[2].title} body={posts[2].body} />
-      <Post title={posts[3].title} body={posts[3].body} /> */}
-
+      <button className="btn btn-warning m-2" onClick={handleClick}>
+        Add
+      </button>
+      <button className="btn btn-danger m-2" onClick={handleDelete}>
+        Delete
+      </button>
       {posts.map((p) => (
         <Post title={p.title} body={p.body} />
       ))}
-
     </div>
   );
 };
