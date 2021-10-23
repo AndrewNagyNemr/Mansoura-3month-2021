@@ -7,8 +7,8 @@ export const ViewPosts = (props) => {
       <button className="btn btn-danger m-2" onClick={props.onDelete}>
         Delete
       </button>
-      {props.posts.map((p) => (
-        <Post title={p.title} body={p.body} />
+      {props.posts.map((p, i) => (
+        <Post key={i} title={p.title} body={p.body} />
       ))}
     </div>
   );

@@ -1,38 +1,29 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { ViewPosts } from "./components/ViewPosts";
-import { AddPost } from "./components/AddPost";
+import { Route, Redirect, Switch } from "react-router-dom";
+import { Navbar } from "./components/Navbar";
+import { Posts } from "./pages/Posts";
+import { UserDetails } from "./pages/UserDetails";
+import { Users } from "./pages/Users";
 
 export const App = () => {
-  const [posts, setPosts] = useState([]);
-
-  // useEffect(() => {
-  //   axios.get("https://jsonplaceholder.typicode.com/posts").then((result) => {
-  //     setPosts(result.data);
-  //   });
-  // }, [posts]);
-
-  const handleDelete = () => {
-    setPosts([]);
-  };
-
-  const addPost = (newPost) => {
-    setPosts([...posts, newPost]);
-  };
-
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-6">
-          <AddPost addPost={addPost} />
-        </div>
-        <div className="col-6">
-          <ViewPosts
-            posts={posts}
-            onDelete={handleDelete}
-          />
-        </div>
+    <>
+      <Navbar />
+      <div className="container">
+        <Switch>
+          <Route path="/posts">
+            <Posts />
+          </Route>
+          <Route path="/users/:id">
+            <UserDetails />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/">
+            <Redirect to="/posts" />
+          </Route>
+        </Switch>
       </div>
-    </div>
+    </>
   );
 };
