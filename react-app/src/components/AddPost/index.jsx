@@ -15,6 +15,7 @@ export const AddPost = (props) => {
       <h1>Add Post</h1>
 
       <Input value={title} setValue={setTitle} label="Title" />
+      
       <Input value={body} setValue={setBody} label="Body" />
 
       <button onClick={handleSubmit} className="btn btn-primary">
