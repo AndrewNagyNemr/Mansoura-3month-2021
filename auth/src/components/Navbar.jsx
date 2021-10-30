@@ -21,12 +21,12 @@ export const Navbar = (props) => {
         <ul className="navbar-nav">
           <li className="nav-item active">
             <NavLink className="nav-link" to="/main-page">
-              Home <span className="sr-only">(current)</span>
+              Home
             </NavLink>
           </li>
           <li className="nav-item active">
             <NavLink className="nav-link" to="/posts">
-              Posts <span className="sr-only">(current)</span>
+              Posts
             </NavLink>
           </li>
         </ul>

@@ -1,6 +1,7 @@
 import { Input } from "../components/Input";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../contexts";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -8,15 +9,12 @@ export const Login = () => {
   const [isValidCred, setIsValidCred] = useState(true);
 
   const history = useHistory();
+  const authContext = useContext(AuthContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //Dummy code
-    if (email === "andrew@iti.com" && password === "123456") {
-      localStorage.setItem("token", "12345");
-      //   history.push("/main-page");
-      history.replace("/main-page");
-    } else setIsValidCred(false);
+    if (authContext.login(email, password)) history.replace("/main-page");
+    else setIsValidCred(false);
   };
   return (
     <div className="d-flex justify-content-center">
