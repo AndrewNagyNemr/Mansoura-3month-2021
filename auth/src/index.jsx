@@ -1,19 +1,19 @@
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { App } from "./App";
-import { AuthContextProvider } from "./contexts/AuthContext";
+import { ApiContextProvider, AuthContextProvider } from "./contexts";
 // import { AuthContext } from "./contexts/AuthContext";
 
 ReactDOM.render(
   <BrowserRouter>
     <AuthContextProvider>
-      <App />
+      <ApiContextProvider baseURL="https://jsonplaceholder.typicode.com/">
+        <App />
+      </ApiContextProvider>
     </AuthContextProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );
-
-
 
 // ReactDOM.render(
 //   <BrowserRouter>

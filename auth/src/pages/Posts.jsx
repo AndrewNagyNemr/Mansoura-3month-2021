@@ -1,23 +1,22 @@
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
-import { AuthContext } from "../contexts";
+import { useEffect, useState } from "react";
+import { useGetPosts } from "../hooks";
 
 export const Posts = () => {
   const [posts, setPosts] = useState([]);
-  const authContext = useContext(AuthContext);
+  const getPosts = useGetPosts();
+
+  // useEffect(() => {
+  //   getPosts().then((data) => {
+  //     setPosts(data);
+  //   });
+  // });
+
+  // component did mount
 
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts", {
-        headers: {
-          token: `Bearer ${authContext.token}`,
-        },
-      })
-      .then((response) => {
-        setPosts(response.data);
-      });
-  });
-  
+    getPosts().then(setPosts);
+  }, []);
+
   if (!posts.length) return <h1>Loading...</h1>;
   return (
     <>
